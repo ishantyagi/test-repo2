@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: cs-tamu
+  api_key: '335953746359431'
+  api_secret: cDh0QksFAhIKS8_ZR5LK-k4HWAo
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: cs-tamu
+  api_key: '335953746359431'
+  api_secret: cDh0QksFAhIKS8_ZR5LK-k4HWAo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: cs-tamu
+  api_key: '335953746359431'
+  api_secret: cDh0QksFAhIKS8_ZR5LK-k4HWAo
+  enhance_image_tag: true
+  static_image_support: false

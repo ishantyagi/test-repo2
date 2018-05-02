@@ -1,0 +1,64 @@
+.container
+  .row
+    .col-md-12#quizContainer
+      %article.jumbotron.mx-auto
+        - @questions.each_with_index do |ques,index|
+          .questionItem{:class=>"#{'hide' if index > 0}","data-answer" => "#{ques.answer}","data-index"=>"#{index}"}
+            .row
+              %span.h--serif Category: #{ques.category} | Question #{index+1} of #{@questions.count}
+            .row
+              - if /.(jpeg|jpg|gif|png)$/.match(ques.question)
+                = cl_image_tag(ques.question, :class=>"img-thumbnail img-fluid")
+              - else
+                %h3= ques.question
+            .row
+              .choices
+                .radio
+                  %label
+                    %input{:name => "optradio#{index}","data-index"=>"0", :type => "radio",:class=>"option"}/
+                  - if /.(jpeg|jpg|gif|png)$/.match(ques.option1)
+                    = cl_image_tag(ques.option1,:class=>"img-thumbnail img-fluid")
+                  - else
+                    %font{:size => "4.5"}= ques.option1
+                .radio
+                  %label
+                    %input{:name => "optradio#{index}", "data-index"=>"1", :type => "radio",:class=>"option"}/
+                  - if /.(jpeg|jpg|gif|png)$/.match(ques.option2)
+                    = cl_image_tag(ques.option2, :class=>"img-thumbnail img-fluid")
+                  - else
+                    %font{:size => "4.5"}= ques.option2
+                .radio
+                  %label
+                    %input{:name => "optradio#{index}", "data-index"=>"2", :type => "radio",:class=>"option"}/
+                  - if /.(jpeg|jpg|gif|png)$/.match(ques.option3)
+                    = cl_image_tag(ques.option3, :class=>"img-thumbnail img-fluid")
+                  - else
+                    %font{:size => "4.5"}= ques.option3
+                .radio
+                  %label
+                    %input{:name => "optradio#{index}", "data-index"=>"3", :type => "radio",:class=>"option"}/
+                  - if /.(jpeg|jpg|gif|png)$/.match(ques.option4)
+                    = cl_image_tag(ques.option4,:class=>"img-thumbnail img-fluid")
+                  - else
+                    %font{:size => "4.5"}= ques.option4
+                .radio
+                  %label
+                    %input{:name => "optradio#{index}", "data-index"=>"4", :type => "radio",:class=>"option"}/
+                  - if /.(jpeg|jpg|gif|png)$/.match(ques.option5)
+                    = cl_image_tag(ques.option5, :class=>"img-thumbnail img-fluid")
+                  - else
+                    %font{:size => "4.5"}= ques.option5
+            %br/
+        .row
+          .col-xs-4
+            .previous
+              %button.btn.previous{:disabled => "disabled", :onclick => "getPrevious()", :type => "button"} Previous
+          .col-xs-4.mx-auto
+            %button.btn.btn-primary.hide#showAnswerBtn{:onclick => "showAnswer()", :type => "button"} Show Answer
+          .col-xs-4
+            .next
+              %button.btn.next{:onclick => "getNext()", :type => "button"} Next
+      .row
+        .col-xs-12.mx-auto
+          %button.btn.btn-info#submitQuiz{:type => "button",:disabled=>"disabled"} Submit
+

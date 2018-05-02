@@ -1,0 +1,11 @@
+.container.jumbotron
+  %h1.row Select number of questions
+  .row
+    = form_tag quiz_path, :method => :get do
+      - @quizlimit.each do |limit|
+        .form-check
+          = radio_button_tag "quizlimit","#{limit}",false, class: "form-check-input"
+          %label.form-check-label #{limit}
+      .row
+        .mx-auto
+          = submit_tag 'Start Quiz', name:nil,class: "btn btn-lg btn-primary --margintop16"

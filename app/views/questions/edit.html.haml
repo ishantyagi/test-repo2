@@ -1,0 +1,90 @@
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"}
+= cloudinary_js_config
+.container.createquestion
+  %h2 Edit Question
+  %hr/
+  .row
+    .col-md-10
+      = form_tag question_path(@question),:id=>"createQuestionForm", :method=> :put do
+        .form-group
+          = label :question, :category, 'Question Category',class: "control-label"
+          = select :question,:category, ['Networks', 'Algorithms', 'Operating Systems', 'Software'],{}, class:"form-control"
+          
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.question)
+          .form-group
+            = label :question, :question, 'Question',class: "control-label"
+            = cl_image_upload_tag(:imagequestion,:tags => "directly_uploaded_question",:crop => :limit, :width => 900, :height => 900,:eager => [{ :crop => :fill, :width => 750, :height => 240 }],:html => { :class=>"form-control fuquestion",:style => "margin-top: 8px" }  )
+            .previewquestion
+              = cl_image_tag(@question.question,:class=>"img-thumbnail img-fluid")
+            .updatequestion
+        - else
+          .form-group
+          = label :question, :question, 'Question',class: "control-label"
+          = text_field :question, 'question', class:"form-control", autofocus: "true", placeholder: "Please add Question text or Image"
+        
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.option1)
+          .form-group
+            = label :question, :option1, 'Option1',class: "control-label"
+            = cl_image_upload_tag(:image1,:tags => "directly_uploaded",:crop => :limit, :width => 500, :height => 300,:eager => [{ :crop => :fill, :width => 350, :height => 70 }],:html => { :class=>"form-control fu1",:style => "margin-top: 8px" }  )
+            .preview1
+              = cl_image_tag(@question.option1,:class=>"img-thumbnail img-fluid")
+            .update1
+        - else
+          .form-group
+          = label :question, :option1, 'Option1',class: "control-label"
+          = text_field :question, 'option1', class:"form-control", autofocus: "true", placeholder: "Please add option text or Image"
+          
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.option2)
+          .form-group
+            = label :question, :option2, 'Option2',class: "control-label"
+            = cl_image_upload_tag(:image2,:tags => "directly_uploaded",:crop => :limit, :width => 500, :height => 300,:eager => [{ :crop => :fill, :width => 350, :height => 70 }],:html => { :class=>"form-control fu2",:style => "margin-top: 8px" }  )
+            .preview2
+              = cl_image_tag(@question.option2, :class=>"img-thumbnail img-fluid")
+            .update2
+        - else
+          .form-group
+            = label :question, :option2, 'Option2',class: "control-label"
+            = text_field :question, 'option2', class:"form-control", autofocus: "true", placeholder: "Please add option text or Image"
+        
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.option3)
+          .form-group
+            = label :question, :option3, 'Option3',class: "control-label"
+            = cl_image_upload_tag(:image3,:tags => "directly_uploaded",:crop => :limit, :width => 500, :height => 300,:eager => [{ :crop => :fill, :width => 350, :height => 70 }],:html => { :class=>"form-control fu3",:style => "margin-top: 8px" }  )
+            .preview3
+              = cl_image_tag(@question.option3, :class=>"img-thumbnail img-fluid")
+            .update3
+        - else
+          .form-group
+          = label :question, :option3, 'Option3',class: "control-label"
+          = text_field :question, 'option3', class:"form-control", autofocus: "true", placeholder: "Please add option text or Image"
+        
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.option4)
+          .form-group
+            = label :question, :option4, 'Option4',class: "control-label"
+            = cl_image_upload_tag(:image4,:tags => "directly_uploaded",:crop => :limit, :width => 500, :height => 300,:eager => [{ :crop => :fill, :width => 350, :height => 70 }],:html => { :class=>"form-control fu4",:style => "margin-top: 8px" }  )
+            .preview4
+              = cl_image_tag(@question.option4, :class=>"img-thumbnail img-fluid")
+            .update4
+        - else
+          .form-group
+            = label :question, :option4, 'Option4',class: "control-label"
+            = text_field :question, 'option4', class:"form-control", autofocus: "true", placeholder: "Please add option text or Image"
+          
+        - if /.(jpeg|jpg|gif|png)$/.match(@question.option5)
+          .form-group
+            = label :question, :option5, 'Option5',class: "control-label"
+            = cl_image_upload_tag(:image5,:tags => "directly_uploaded",:crop => :limit, :width => 500, :height => 300,:eager => [{ :crop => :fill, :width => 350, :height => 70 }],:html => { :class=>"form-control fu5",:style => "margin-top: 8px" }  )
+            .preview5
+              = cl_image_tag(@question.option5, :class=>"img-thumbnail img-fluid")
+            .update5
+        - else
+          .form-group 
+            = label :question, :option5, 'Option5',class: "control-label"
+            = text_field :question, 'option5', class:"form-control", autofocus: "true", placeholder: "Please add option text or Image"
+      
+        .form-group
+          = label :question, :answer, 'Correct Answer',class: "control-label"
+          = text_field :question, 'answer', class:"form-control", autofocus: "true", placeholder: "Please add correct option number. For e.g., If Option 1 is correct, put 1 in this field"
+        .row
+          .form-group.mx-auto
+            = submit_tag 'Save Changes',class: "btn btn-primary"
